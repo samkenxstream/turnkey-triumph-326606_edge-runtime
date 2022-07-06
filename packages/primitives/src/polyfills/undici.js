@@ -1,19 +1,3 @@
-/**
- * Undici expects some some globals defined at Node.js global level. We must
- * define them as they are missing in older versions. These are defined here
- * because it is just Undici who requires them.
- */
-const abort = require('abort-controller')
-
-global.AbortController = abort.AbortController
-global.AbortSignal = abort.AbortSignal
-
-global.FinalizationRegistry = function () {
-  return {
-    register: function () {},
-  }
-}
-
 const Constants = require('undici/lib/fetch/constants')
 const CoreSymbols = require('undici/lib/core/symbols')
 

@@ -1,8 +1,6 @@
-/**
- * This polyfill is required because we have dependencies that require Blob
- * from node's buffer which is define only for certain versions. This way
- * we make sure the Blob we use in the whole realm is always the same.
- */
-const buffer = require('buffer')
-buffer.Blob = require('formdata-node').Blob
-module.exports = buffer
+module.exports = require('buffer')
+
+// For some reason this doesn't work. If you comment it does with node >16
+module.exports.Blob = require('formdata-node').Blob
+// module.exports.atob = (enc) => Buffer.from(enc, 'base64').toString('binary')
+// module.exports.btoa = (str) => Buffer.from(str, 'binary').toString('base64')
